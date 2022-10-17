@@ -9,9 +9,10 @@ datasource db {
 
 model User {
   id         String   @id @default(uuid())
-  name       String
-  cpf        String
+  name       String?
+  cpf        String?  @unique
   birthday   DateTime
+  email      String   @unique
   created_at DateTime @default(now())
   Cart       Cart[]
 
@@ -20,9 +21,9 @@ model User {
 
 model Product {
   id          String   @id @default(uuid())
-  preco       Float
-  description String
-  category    String
+  preco       Float?
+  description String?
+  category    String?
   created_at  DateTime @default(now())
   Cart        Cart[]
 
@@ -30,11 +31,11 @@ model Product {
 }
 
 model Cart {
-  id         String  @id @default(uuid())
+  id         String   @id @default(uuid())
   product_id String
-  product    Product @relation(fields: [product_id], references: [id])
+  product    Product? @relation(fields: [product_id], references: [id])
   user_id    String
-  user       User    @relation(fields: [user_id], references: [id])
+  user       User?    @relation(fields: [user_id], references: [id])
 
   @@map("carts")
 }
