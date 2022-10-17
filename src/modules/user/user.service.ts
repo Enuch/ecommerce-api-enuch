@@ -7,6 +7,21 @@ export class UserService {
   constructor(private prisma: PrismaService) {}
 
   async create(data: UserDTO) {
+    const userCPF = await this.prisma.user.findFirst({
+      where: {
+        cpf: data.cpf,
+      },
+    });
+
+    const userEmail = await this.prisma.user.findFirst({
+      where: {
+        email: data.email,
+      },
+    });
+
+    if (userCPF) throw new Error('O CPF já está cadastrado!');
+    if (userEmail) throw new Error('O e-mail já está cadastrado!');
+
     const user = await this.prisma.user.create({
       data,
     });
@@ -19,11 +34,15 @@ export class UserService {
   }
 
   async getOne(id: string) {
-    return await this.prisma.user.findMany({
+    const user = await this.prisma.user.findMany({
       where: {
         id,
       },
     });
+
+    if (!user) throw new Error('Usuário não existe!');
+
+    return user;
   }
 
   async update(id: string, data: UserDTO) {
@@ -33,6 +52,9 @@ export class UserService {
       },
       data,
     });
+
+    if (!user) throw new Error('Usuário não existe!');
+
     return user;
   }
 
@@ -42,6 +64,9 @@ export class UserService {
         id,
       },
     });
+
+    if (!user) throw new Error('Usuário não existe!');
+
     return user;
   }
 }
