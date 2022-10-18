@@ -3,28 +3,58 @@ import { PrismaService } from 'src/database/prisma.service';
 import { CartDTO } from './cart.dto';
 
 @Injectable()
-export class cartService {
+export class CartService {
   constructor(private prisma: PrismaService) {}
 
   async create(data: CartDTO) {
     const cart = await this.prisma.cart.create({
-      data,
+      data: {
+        product_id: data.product.id,
+        user_id: data.user.id,
+      },
     });
     return cart;
   }
 
   async getAll() {
-    return await this.prisma.cart.findMany({});
+    return await this.prisma.cart.findMany({
+      include: {
+        product: true,
+        user: true,
+      },
+    });
   }
 
   async getOne(id: string) {
-    const cart = await this.prisma.cart.findMany({
+    const cart = await this.prisma.cart.findUnique({
       where: {
         id,
       },
+      include: {
+        product: true,
+        user: true,
+      },
     });
 
-    if (!cart) throw new Error('Produto não existe!');
+    if (!cart) throw new Error('Carrinho não existe!');
+
+    return cart;
+  }
+
+  async getByUser(id: string) {
+    const cart = await this.prisma.cart.findMany({
+      where: {
+        user: {
+          id,
+        },
+      },
+      include: {
+        product: true,
+        user: true,
+      },
+    });
+
+    if (!cart) throw new Error('Carrinho não existe!');
 
     return cart;
   }
@@ -34,10 +64,13 @@ export class cartService {
       where: {
         id,
       },
-      data,
+      data: {
+        product_id: data.product.id,
+        user_id: data.user.id,
+      },
     });
 
-    if (!cart) throw new Error('Produto não existe!');
+    if (!cart) throw new Error('Carrinho não existe!');
 
     return cart;
   }
