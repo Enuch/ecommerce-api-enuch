@@ -11,7 +11,7 @@ export class ProductService {
       data: {
         description: data.description,
         category: data.category,
-        preco: data.preco,
+        price: data.price,
         active: true,
       },
     });
@@ -47,7 +47,7 @@ export class ProductService {
       data: {
         description: data.description,
         category: data.category,
-        preco: data.preco,
+        price: data.price,
       },
     });
 

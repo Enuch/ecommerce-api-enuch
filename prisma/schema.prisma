@@ -22,7 +22,7 @@ model User {
 
 model Product {
   id          String   @id @default(uuid())
-  prico       Float?
+  price       Float?
   description String?
   category    String?
   created_at  DateTime @default(now())
