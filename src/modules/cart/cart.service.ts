@@ -24,7 +24,12 @@ export class CartService {
       },
       include: {
         product: true,
-        user: true,
+        user: {
+          select: {
+            id: true,
+            name: true,
+          },
+        },
       },
     });
   }
@@ -37,7 +42,12 @@ export class CartService {
       },
       include: {
         product: true,
-        user: true,
+        user: {
+          select: {
+            id: true,
+            name: true,
+          },
+        },
       },
     });
 
@@ -56,7 +66,12 @@ export class CartService {
       },
       include: {
         product: true,
-        user: true,
+        user: {
+          select: {
+            id: true,
+            name: true,
+          },
+        },
       },
     });
 

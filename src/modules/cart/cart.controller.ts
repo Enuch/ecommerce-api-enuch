@@ -29,7 +29,7 @@ export class CartController {
     return this.cartService.getOne(id);
   }
 
-  @Get('/lista/:id')
+  @Get('/byUser/:id')
   async getByUser(@Param('id') id: string) {
     return this.cartService.getByUser(id);
   }

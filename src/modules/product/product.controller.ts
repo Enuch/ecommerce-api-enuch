@@ -29,6 +29,11 @@ export class ProductController {
     return this.productService.getOne(id);
   }
 
+  @Get('/byCategory/:id')
+  async getByCategory(@Param('id') id: string) {
+    return this.productService.getByCategory(id);
+  }
+
   @Put(':id')
   async update(@Param('id') id: string, @Body() data: ProductDTO) {
     return this.productService.update(id, data);

@@ -39,6 +39,19 @@ export class ProductService {
     return product;
   }
 
+  async getByCategory(id: string) {
+    const product = await this.prisma.product.findMany({
+      where: {
+        category: id,
+        active: true,
+      },
+    });
+
+    if (!product) throw new Error('Produto não existe!');
+
+    return product;
+  }
+
   async update(id: string, data: ProductDTO) {
     const product = await this.prisma.product.update({
       where: {
