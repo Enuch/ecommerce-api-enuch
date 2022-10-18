@@ -23,20 +23,31 @@ export class UserService {
     if (userEmail) throw new Error('O e-mail já está cadastrado!');
 
     const user = await this.prisma.user.create({
-      data,
+      data: {
+        name: data.name,
+        cpf: data.cpf,
+        email: data.email,
+        birthday: data.birthday,
+        active: true,
+      },
     });
 
     return user;
   }
 
   async getAll() {
-    return await this.prisma.user.findMany({});
+    return await this.prisma.user.findMany({
+      where: {
+        active: true,
+      },
+    });
   }
 
   async getOne(id: string) {
-    const user = await this.prisma.user.findUnique({
+    const user = await this.prisma.user.findFirst({
       where: {
         id,
+        active: true,
       },
     });
 
@@ -50,7 +61,12 @@ export class UserService {
       where: {
         id,
       },
-      data,
+      data: {
+        name: data.name,
+        cpf: data.cpf,
+        email: data.email,
+        birthday: data.birthday,
+      },
     });
 
     if (!user) throw new Error('Usuário não existe!');
@@ -59,9 +75,12 @@ export class UserService {
   }
 
   async delete(id: string) {
-    const user = await this.prisma.user.delete({
+    const user = await this.prisma.user.update({
       where: {
         id,
+      },
+      data: {
+        active: false,
       },
     });
 

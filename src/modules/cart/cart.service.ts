@@ -11,6 +11,7 @@ export class CartService {
       data: {
         product_id: data.product.id,
         user_id: data.user.id,
+        active: true,
       },
     });
     return cart;
@@ -18,6 +19,9 @@ export class CartService {
 
   async getAll() {
     return await this.prisma.cart.findMany({
+      where: {
+        active: true,
+      },
       include: {
         product: true,
         user: true,
@@ -26,9 +30,10 @@ export class CartService {
   }
 
   async getOne(id: string) {
-    const cart = await this.prisma.cart.findUnique({
+    const cart = await this.prisma.cart.findFirst({
       where: {
         id,
+        active: true,
       },
       include: {
         product: true,
@@ -47,6 +52,7 @@ export class CartService {
         user: {
           id,
         },
+        active: true,
       },
       include: {
         product: true,
@@ -76,9 +82,12 @@ export class CartService {
   }
 
   async delete(id: string) {
-    const cart = await this.prisma.cart.delete({
+    const cart = await this.prisma.cart.update({
       where: {
         id,
+      },
+      data: {
+        active: false,
       },
     });
 

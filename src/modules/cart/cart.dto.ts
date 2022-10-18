@@ -16,4 +16,5 @@ export type CartDTO = {
     email: string;
     created_at: Date;
   };
+  active: boolean;
 };

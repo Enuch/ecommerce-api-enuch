@@ -5,4 +5,5 @@ export type ProductDTO = {
   description: string;
   category: string;
   created_at: Date;
+  active: boolean;
 };

@@ -6,4 +6,5 @@ export type UserDTO = {
   birthday: Date;
   email: string;
   created_at: Date;
+  active: boolean;
 };

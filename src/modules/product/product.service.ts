@@ -8,19 +8,29 @@ export class ProductService {
 
   async create(data: ProductDTO) {
     const product = await this.prisma.product.create({
-      data,
+      data: {
+        description: data.description,
+        category: data.category,
+        preco: data.preco,
+        active: true,
+      },
     });
     return product;
   }
 
   async getAll() {
-    return await this.prisma.product.findMany({});
+    return await this.prisma.product.findMany({
+      where: {
+        active: true,
+      },
+    });
   }
 
   async getOne(id: string) {
-    const product = await this.prisma.product.findUnique({
+    const product = await this.prisma.product.findFirst({
       where: {
         id,
+        active: true,
       },
     });
 
@@ -34,7 +44,11 @@ export class ProductService {
       where: {
         id,
       },
-      data,
+      data: {
+        description: data.description,
+        category: data.category,
+        preco: data.preco,
+      },
     });
 
     if (!product) throw new Error('Produto não existe!');
@@ -43,9 +57,12 @@ export class ProductService {
   }
 
   async delete(id: string) {
-    const product = await this.prisma.product.delete({
+    const product = await this.prisma.product.update({
       where: {
         id,
+      },
+      data: {
+        active: false,
       },
     });
 
