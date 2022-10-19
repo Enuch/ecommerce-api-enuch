@@ -100,6 +100,17 @@ export class PurchaseService {
   }
 
   async finish(id: string) {
+    const purchase_status = await this.prisma.purchase.findUnique({
+      where: {
+        id: id,
+      },
+    });
+
+    if (purchase_status.status !== 1)
+      throw Error(
+        'A compra já está finalizada ou cancela, não é possivel concluir a operação',
+      );
+
     const purchase = await this.prisma.purchase.update({
       where: {
         id: id,
