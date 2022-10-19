@@ -2,13 +2,13 @@ import { Injectable } from '@nestjs/common';
 import { UserService } from 'src/modules/user/user.service';
 import { JwtService } from '@nestjs/jwt';
 import { UserDTO } from 'src/modules/user/user.dto';
-import { CartService } from 'src/modules/cart/cart.service';
+import { PurchaseService } from 'src/modules/purchase/purchase.service';
 
 @Injectable()
 export class AuthService {
   constructor(
     private usersService: UserService,
-    private cartsService: CartService,
+    private purchaseService: PurchaseService,
     private jwtService: JwtService,
   ) {}
 
@@ -29,9 +29,9 @@ export class AuthService {
   }
 
   async getByUser(id: string) {
-    const cart = await this.cartsService.getByUser(id);
-    if (!cart) return null;
+    const purchase = await this.purchaseService.getCart(id);
+    if (!purchase) return null;
 
-    return cart;
+    return purchase;
   }
 }

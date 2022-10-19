@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-export type CartDTO = {
+export type PurchaseDTO = {
   id: string;
   product: {
     id: string;
@@ -16,5 +16,8 @@ export type CartDTO = {
     email: string;
     created_at: Date;
   };
+  status: string;
+  created_at: Date;
+  finished_at: Date;
   active: boolean;
 };

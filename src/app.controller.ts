@@ -15,7 +15,7 @@ export class AppController {
   }
 
   @UseGuards(JwtAuthGuard)
-  @Get('cart/user/:id')
+  @Get('purchase/user/:id')
   getProfile(@Request() req) {
     return this.authService.getByUser(req.id);
   }

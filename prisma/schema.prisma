@@ -8,43 +8,40 @@ datasource db {
 }
 
 model User {
-  id         String   @id @default(uuid())
+  id         String     @id @default(uuid())
   name       String?
-  cpf        String?  @unique
+  cpf        String?    @unique
   birthday   DateTime
-  email      String   @unique
-  password   String
-  created_at DateTime @default(now())
-  Cart       Cart[]
+  email      String?    @unique
+  password   String?
+  created_at DateTime   @default(now())
+  purchase   Purchase[]
   active     Boolean
 
   @@map("users")
 }
 
 model Product {
-  id          String   @id @default(uuid())
+  id          String    @id @default(uuid())
   price       Float?
   description String?
   category    String?
-  created_at  DateTime @default(now())
-  Cart        Cart[]
+  created_at  DateTime  @default(now())
+  purchase    Purchase?
   active      Boolean
 
   @@map("products")
 }
 
-model Cart {
-  id         String   @id @default(uuid())
-  product_id String
-  product    Product? @relation(fields: [product_id], references: [id])
-  user_id    String
-  user       User?    @relation(fields: [user_id], references: [id])
-  active     Boolean
+model Purchase {
+  id          String   @id @default(uuid())
+  product_id  String   @unique
+  product     Product  @relation(fields: [product_id], references: [id])
+  user_id     String   @unique
+  user        User     @relation(fields: [user_id], references: [id])
+  status      Int?
+  created_at  DateTime @default(now())
+  finished_at DateTime @default(now())
 
-  @@map("carts")
+  @@map("purchasies")
 }
-
-// Criar tabelas Order e Category
-// Ajeiter nome Preco para Price
-// Busca por Category
-// Histórico de Order 
