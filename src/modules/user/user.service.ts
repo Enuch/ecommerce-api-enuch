@@ -27,6 +27,7 @@ export class UserService {
         name: data.name,
         cpf: data.cpf,
         email: data.email,
+        password: data.password,
         birthday: data.birthday,
         active: true,
       },
@@ -56,6 +57,19 @@ export class UserService {
     return user;
   }
 
+  async login(email: string) {
+    const user = await this.prisma.user.findFirst({
+      where: {
+        email,
+        active: true,
+      },
+    });
+
+    if (!user) throw new Error('Usuário não existe!');
+
+    return user;
+  }
+
   async update(id: string, data: UserDTO) {
     const user = await this.prisma.user.update({
       where: {
@@ -65,6 +79,7 @@ export class UserService {
         name: data.name,
         cpf: data.cpf,
         email: data.email,
+        password: data.password,
         birthday: data.birthday,
       },
     });

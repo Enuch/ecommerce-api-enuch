@@ -5,6 +5,7 @@ export type UserDTO = {
   cpf: string;
   birthday: Date;
   email: string;
+  password: string;
   created_at: Date;
   active: boolean;
 };
