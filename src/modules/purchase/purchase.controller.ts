@@ -29,9 +29,9 @@ export class PurchaseController {
     return this.purchaseService.getOne(id);
   }
 
-  @Get('/byUser/:id')
-  async getByUser(@Param('id') id: string) {
-    return this.purchaseService.getByUser(id);
+  @Get('/history/:id')
+  async getHistory(@Param('id') id: string) {
+    return this.purchaseService.getHistory(id);
   }
 
   @Put(':id')

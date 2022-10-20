@@ -52,7 +52,7 @@ export class PurchaseService {
     return purchase;
   }
 
-  async getByUser(id: string) {
+  async getHistory(id: string) {
     const purchase = await this.prisma.purchase.findMany({
       where: {
         user: {

@@ -22,12 +22,12 @@ model User {
 }
 
 model Product {
-  id          String    @id @default(uuid())
+  id          String     @id @default(uuid())
   price       Float
   description String
   category    String
-  created_at  DateTime  @default(now())
-  purchase    Purchase?
+  created_at  DateTime   @default(now())
+  purchase    Purchase[]
   active      Boolean
 
   @@map("products")
@@ -35,9 +35,9 @@ model Product {
 
 model Purchase {
   id          String   @id @default(uuid())
-  product_id  String   @unique
+  product_id  String
   product     Product  @relation(fields: [product_id], references: [id])
-  user_id     String   @unique
+  user_id     String
   user        User     @relation(fields: [user_id], references: [id])
   status      Int
   created_at  DateTime @default(now())
