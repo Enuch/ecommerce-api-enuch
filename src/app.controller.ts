@@ -17,14 +17,14 @@ export class AppController {
 
   @UseGuards(JwtAuthGuard)
   @Get('/purchase/history/:id')
-  getPurchaseHistoryByUser(@Request() req) {
-    return this.authService.getPurchaseHistoryByUser(req.id);
+  getPurchaseHistoryByUser(@Param('id') id) {
+    return this.authService.getPurchaseHistoryByUser(id);
   }
 
   @UseGuards(JwtAuthGuard)
   @Get('/purchase/cart/:id')
-  getCartByUser(@Request() req) {
-    return this.authService.getCartByUser(req.id);
+  getCartByUser(@Param('id') id) {
+    return this.authService.getCartByUser(id);
   }
 
   @UseGuards(JwtAuthGuard)
