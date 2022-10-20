@@ -90,6 +90,7 @@ $ npm run start:dev OU npm run start
   "description": "Monitor",
   "category": "Periférico"
 }
+
   PURCHASE: ()
 {
 	"product": {
