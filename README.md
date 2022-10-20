@@ -41,19 +41,19 @@ $ npm install
 
   comando para iniciar a dependencia prisma no projeto (Se a pasta prisma já existe no projeto, não será necessário rodar este comando)
 
-  ```bash
+```bash
 $ npx prisma init
 ```
   comando para criar as tabelas no seu banco de dados
 
-  ```bash
+```bash
 $ npx prisma migrate dev --name init
 ```
 ## Running the app
 
   Agora rode o comando abaixo para iniciar a API
 
-    ```bash
+```bash
 $ npm run start:dev OU npm run start
 ```
 
