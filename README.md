@@ -67,13 +67,14 @@ $ npm run start:dev OU npm run start
      * finalizar compra - PUT: id compra
      * editar compra - PUT: id compra
      * cancelar compra - PUT: id compra
-     * listar produtos por categorias - GET: 
+     * listar produtos por categorias - GET: nome da categoria
      * carrinho de compras do usuario - GET: id user (apenas compras ativas)
      * historico de compras do usuario - GET: id user (compras ativas, canceladas e realizadas)
   * 5 - Também é necessário cadastrar um Produto para fazer as operações acima, nas rotas estão os CRUDS de todas as tabelas para fazer
   vários testes
   * 6 - Não estou deletando nem um dado, apenas usando soft delete
   * 7 - Abaixo estará os modelos de JSON para os cadastros
+  * Obs: as compras tem 3 estados 1 - ativa/aberta, 2 - finalizadas ou 3 - canceladas
 
 ```
   USER:
