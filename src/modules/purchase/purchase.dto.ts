@@ -1,6 +1,9 @@
 /* eslint-disable prettier/prettier */
-export type PurchaseDTO = {
+
+export class PurchaseDTO {
   id: string;
+  product_id: string;
+  user_id: string;
   product: {
     id: string;
     preco: number;
@@ -20,4 +23,4 @@ export type PurchaseDTO = {
   created_at: Date;
   finished_at: Date;
   active: boolean;
-};
+}
