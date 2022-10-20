@@ -75,6 +75,7 @@ $ npm run start:dev OU npm run start
   * 6 - Não estou deletando nem um dado, apenas usando soft delete
   * 7 - Abaixo estará os modelos de JSON para os cadastros
 
+```
   USER:
 {
 	"name": "Enuch",
@@ -106,6 +107,7 @@ $ npm run start:dev OU npm run start
 	"email": "enuch@gmail.com",
 	"password": "12345"
 }
+```
 
 
 
