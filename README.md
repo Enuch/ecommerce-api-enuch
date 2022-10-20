@@ -58,22 +58,22 @@ $ npm run start:dev OU npm run start
 ```
 
   Agora algumas explicações sobre o projeto:
-  O usuário só consegue realizar operações com uso de token para alguns casos de usos
-  1 - Cadastre um usuário na roda de cadastro de user
-  2 - Vá para a rota de login e envie um body com o Email e Senha do usuário, a API retornar o token de acesso
-  3 - Agora com o token é possível acessar os casos de uso (rotas) feitas para o usuário
-  4 - São as seguintes rotas que estão na pasta user cases no arquivo do insominia: (As seguintes rotas precisa de token)
-      adionar compras ao carrinho - POST
-      finalizar compra - PUT: id compra
-      editar compra - PUT: id compra
-      cancelar compra - PUT: id compra
-      listar produtos por categorias - GET: 
-      carrinho de compras do usuario - GET: id user (apenas compras ativas)
-      historico de compras do usuario - GET: id user (compras ativas, canceladas e realizadas)
-  5 - Também é necessário cadastrar um Produto para fazer as operações acima, nas rotas estão os CRUDS de todas as tabelas para fazer
+  * O usuário só consegue realizar operações com uso de token para alguns casos de usos
+  * 1 - Cadastre um usuário na roda de cadastro de user
+  * 2 - Vá para a rota de login e envie um body com o Email e Senha do usuário, a API retornar o token de acesso
+  * 3 - Agora com o token é possível acessar os casos de uso (rotas) feitas para o usuário
+  * 4 - São as seguintes rotas que estão na pasta user cases no arquivo do insominia: (As seguintes rotas precisa de token)
+     * adionar compras ao carrinho - POST
+     * finalizar compra - PUT: id compra
+     * editar compra - PUT: id compra
+     * cancelar compra - PUT: id compra
+     * listar produtos por categorias - GET: 
+     * carrinho de compras do usuario - GET: id user (apenas compras ativas)
+     * historico de compras do usuario - GET: id user (compras ativas, canceladas e realizadas)
+  * 5 - Também é necessário cadastrar um Produto para fazer as operações acima, nas rotas estão os CRUDS de todas as tabelas para fazer
   vários testes
-  6 - Não estou deletando nem um dado, apenas usando soft delete
-  7 - Abaixo estará os modelos de JSON para os cadastros
+  * 6 - Não estou deletando nem um dado, apenas usando soft delete
+  * 7 - Abaixo estará os modelos de JSON para os cadastros
 
   USER:
 {
