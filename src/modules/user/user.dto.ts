@@ -16,8 +16,8 @@ export class UserDTO {
   @IsNotEmpty()
   name: string;
   @IsString()
-  @MinLength(10, { message: 'O CPF precisa ter 10 números, ex: 1234567890' })
-  @MaxLength(10, { message: 'O CPF precisa ter 10 números, ex: 1234567890' })
+  @MinLength(11, { message: 'O CPF precisa ter 11 números, ex: 1234567890' })
+  @MaxLength(11, { message: 'O CPF precisa ter 11 números, ex: 1234567890' })
   @IsNotEmpty()
   cpf: string;
   @IsDateString()

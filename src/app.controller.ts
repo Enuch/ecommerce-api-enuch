@@ -3,7 +3,7 @@ import { Controller, Request, Post, UseGuards, Get } from '@nestjs/common';
 import { LocalAuthGuard } from './auth/guards/local-auth.guard';
 import { AuthService } from './auth/auth.service';
 import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
-import { Delete, Put } from '@nestjs/common/decorators';
+import { Body, Delete, Param, Put } from '@nestjs/common/decorators';
 
 @Controller()
 export class AppController {
@@ -35,19 +35,19 @@ export class AppController {
 
   @UseGuards(JwtAuthGuard)
   @Put('purchase/finish/:id')
-  finishPurchase(@Request() req) {
-    return this.authService.finish(req.id);
+  finishPurchase(@Param('id') id) {
+    return this.authService.finish(id);
   }
 
   @UseGuards(JwtAuthGuard)
   @Put('purchase/:id')
-  updatePurchase(@Request() req) {
-    return this.authService.update(req.id, req);
+  updatePurchase(@Param('id') id, @Body() data) {
+    return this.authService.update(id, data);
   }
 
   @UseGuards(JwtAuthGuard)
   @Delete('purchase/:id')
-  deletePurchase(@Request() req) {
-    return this.authService.delete(req.id);
+  deletePurchase(@Param('id') id) {
+    return this.authService.delete(id);
   }
 }
